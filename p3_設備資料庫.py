@@ -344,21 +344,22 @@ def add_site_photos_table(doc):
 st.subheader("⚙️ 設備系統資料庫")
 c0, c1, c2, c3, c4 = st.columns([0.8, 1.5, 1.2, 1.2, 1.5])
 with c1:
-    rt_s = st.number_input("夏容量", 600, key="rt_s")
-    rt_sp = st.number_input("春容量", 450, key="rt_sp")
-    rt_w = st.number_input("冬容量", 450, key="rt_w")
+    # 將最小值 min_value 設為 0，這樣就不會被限制在只能調大
+    rt_s = st.number_input("夏容量", min_value=0, value=600, key="rt_s")
+    rt_sp = st.number_input("春容量", min_value=0, value=450, key="rt_sp")
+    rt_w = st.number_input("冬容量", min_value=0, value=450, key="rt_w")
 with c2:
-    ct_s = st.number_input("夏台", 1, key="ct_s")
-    ct_sp = st.number_input("春台", 1, key="ct_sp")
-    ct_w = st.number_input("冬台", 1, key="ct_w")
+    ct_s = st.number_input("夏台", min_value=0, value=1, key="ct_s")
+    ct_sp = st.number_input("春台", min_value=0, value=1, key="ct_sp")
+    ct_w = st.number_input("冬台", min_value=0, value=1, key="ct_w")
 with c3:
-    ld_s = st.number_input("夏負", 70, key="ld_s")
-    ld_sp = st.number_input("春負", 70, key="ld_sp")
-    ld_w = st.number_input("冬負", 60, key="ld_w")
+    ld_s = st.number_input("夏負", min_value=0, max_value=100, value=70, key="ld_s")
+    ld_sp = st.number_input("春負", min_value=0, max_value=100, value=70, key="ld_sp")
+    ld_w = st.number_input("冬負", min_value=0, max_value=100, value=60, key="ld_w")
 with c4:
-    tp_s = st.number_input("夏溫", 7, key="tp_s")
-    tp_sp = st.number_input("春溫", 7, key="tp_sp")
-    tp_w = st.number_input("冬溫", 7, key="tp_w")
+    tp_s = st.number_input("夏溫", min_value=0, value=7, key="tp_s")
+    tp_sp = st.number_input("春溫", min_value=0, value=7, key="tp_sp")
+    tp_w = st.number_input("冬溫", min_value=0, value=7, key="tp_w")
 
 ac_rows = [
     ["夏季", rt_s, ct_s, f"{ld_s}%", round(rt_s*ld_s/100, 1), tp_s],
